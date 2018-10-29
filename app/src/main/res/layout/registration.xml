@@ -1,0 +1,210 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/registration"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+
+        <TextView
+            android:id="@+id/registration_description"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="false"
+            android:layout_marginTop="15dp"
+            android:text="@string/registration_description" />
+
+        <EditText
+            android:id="@+id/registration_username_edittext"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="false"
+            android:layout_marginTop="15dp"
+            android:inputType="textPersonName"
+            android:ems="10"
+            android:layout_below="@+id/registration_description" />
+
+        <TextView
+            android:id="@+id/registration_username_description"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="false"
+            android:layout_marginTop="5dp"
+            android:layout_below="@+id/registration_username_edittext"
+            android:text="@string/registration_username_description" />
+
+        <EditText
+            android:id="@+id/registration_firstname_edittext"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="false"
+            android:layout_marginTop="15dp"
+            android:inputType="textPersonName"
+            android:ems="10"
+            android:layout_below="@+id/registration_username_description" />
+
+        <TextView
+            android:id="@+id/registration_firstname_description"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="false"
+            android:layout_marginTop="5dp"
+            android:layout_below="@+id/registration_firstname_edittext"
+            android:text="@string/registration_firstname_description" />
+
+        <EditText
+            android:id="@+id/registration_lastname_edittext"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="false"
+            android:layout_marginTop="15dp"
+            android:inputType="textPersonName"
+            android:ems="10"
+            android:layout_below="@+id/registration_firstname_description"
+            />
+
+        <TextView
+            android:id="@+id/registration_lastname_description"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="false"
+            android:layout_marginTop="5dp"
+            android:layout_below="@+id/registration_lastname_edittext"
+            android:text="@string/registration_lastname_description" />
+<!--Todo hier muss noch geguckt werden das birth kein textfeld ist sondern damit man ein datum eingeben kann. -->
+        <EditText
+            android:id="@+id/registration_birth_edittext"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="false"
+            android:layout_marginTop="15dp"
+            android:inputType="textPersonName"
+            android:ems="10"
+            android:layout_below="@+id/registration_lastname_description"
+            />
+
+        <TextView
+            android:id="@+id/registration_birth_description"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="false"
+            android:layout_marginTop="5dp"
+            android:layout_below="@+id/registration_birth_edittext"
+            android:text="@string/registration_birth_description" />
+
+        <EditText
+            android:id="@+id/registration_email_edittext"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="false"
+            android:layout_marginTop="15dp"
+            android:inputType="textEmailAddress"
+            android:ems="10"
+            android:layout_below="@+id/registration_birth_description"
+            />
+
+        <TextView
+            android:id="@+id/registration_email_description"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="false"
+            android:layout_marginTop="5dp"
+            android:layout_below="@+id/registration_email_edittext"
+            android:text="@string/registration_email_description" />
+
+        <EditText
+            android:id="@+id/registration_password_one_edittext"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="false"
+            android:layout_marginTop="15dp"
+            android:inputType="textPassword"
+            android:ems="10"
+            android:layout_below="@+id/registration_email_description"
+            />
+
+        <TextView
+            android:id="@+id/registration_password_one_description"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="false"
+            android:layout_marginTop="5dp"
+            android:layout_below="@+id/registration_password_one_edittext"
+            android:text="@string/registration_password_one_description" />
+
+        <EditText
+            android:id="@+id/registration_password_two_edittext"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="false"
+            android:layout_marginTop="15dp"
+            android:inputType="textPassword"
+            android:ems="10"
+            android:layout_below="@+id/registration_password_one_description"
+            />
+
+        <TextView
+            android:id="@+id/registration_password_two_description"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="false"
+            android:layout_marginTop="5dp"
+            android:layout_below="@+id/registration_password_two_edittext"
+            android:text="@string/registration_password_two_description" />
+
+        <Button
+            android:id="@+id/registration_confirm_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="false"
+            android:layout_marginTop="15dp"
+            android:layout_below="@+id/registration_password_two_description"
+            android:text="@string/registration_confirm_button"/>
+
+        <Button
+            android:id="@+id/registration_back_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="false"
+            android:layout_marginTop="15dp"
+            android:layout_below="@+id/registration_confirm_button"
+            android:text="@string/registration_back_button"/>
+
+
+
+
+
+
+
+
+
+
+    </RelativeLayout>
+
+
+</ScrollView>

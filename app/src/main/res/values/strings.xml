@@ -1,0 +1,36 @@
+<resources>
+    <!--Allgemein-->
+    <string name="app_name">Whiskey-App-Mark-03</string>
+
+
+    <!--Navigaton Drawer-->
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="nav_header_title">Hier steht der Name des Users</string>
+    <string name="nav_header_subtitle">Hier kann noch was stehen, bin ich mir aber noch unsicher</string>
+    <string name="nav_header_desc">Hier kann ein Bild von einer person rein</string>
+
+    <!--Settings-->
+    <string name="action_settings">Settings</string>
+
+    <!--Login-->
+    <string name="login_description">Bitte geben sie Ihre Userdaten ein</string>
+    <string name="login_username_description">Username</string>
+    <string name="login_password_description">Passwort</string>
+    <string name="login_confirm_button">Bestätigen</string>
+    <string name="login_registration_button">Registrieren</string>
+    <string name="login_registration_description">Falls sie noch nicht Registriert sind, können Sie das hier tun.</string>
+
+    <!--Registration-->
+    <string name="registration_description">Bitte geben Sie folgende Date zur erfolgreichen Registrierung ein:</string>
+    <string name="registration_username_description">Nickname</string>
+    <string name="registration_firstname_description">Vorname</string>
+    <string name="registration_lastname_description">Nachname</string>
+    <string name="registration_birth_description">Geburtsdatum</string>
+    <string name="registration_email_description">Email</string>
+    <string name="registration_password_one_description">Passwort</string>
+    <string name="registration_password_two_description">Passwort bestätigen</string>
+    <string name="registration_confirm_button">Bestätigen</string>
+    <string name="registration_back_button">Zurúck</string>
+
+</resources>
