@@ -55,10 +55,10 @@ public class Login_Activity extends AppCompatActivity implements View.OnClickLis
                     username = ((EditText) findViewById(R.id.login_username_edittext)).getText().toString();
                     password = ((EditText) findViewById(R.id.login_password_edittext)).getText().toString();
 
-                    onLogin(v, username, password);
+                  //  onLogin(v, username, password);
 
                     //Hier muss die Abfrage der Datenbank hin
-           //        new Connection.ConnectionHelper().execute(type, username, password);
+                    new Connection.ConnectionHelper().execute(type, username, password);
                     break;
                 case R.id.login_registration_button:
                         Intent in2 = new Intent(Login_Activity.this, Registration_Activity.class);
@@ -109,11 +109,11 @@ public static void check_login(String login_data){
 }
 
 
-    public void onLogin(View view, String username, String password){
-        String type = "find_login";
-        Connection.ConnectionHelper connectionHelper = new Connection.ConnectionHelper(this);
-        connectionHelper.execute(type, username, password);
-   }
+   // public void onLogin(View view, String username, String password){
+     //   String type = "find_login";
+       // Connection.ConnectionHelper connectionHelper = new Connection.ConnectionHelper(this);
+       // connectionHelper.execute(type, username, password);
+  // }
 
 
 
