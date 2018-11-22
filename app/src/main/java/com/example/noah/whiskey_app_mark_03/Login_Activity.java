@@ -1,5 +1,6 @@
 package com.example.noah.whiskey_app_mark_03;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -9,23 +10,31 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.app.AlertDialog;
 
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import Connection.ConnectionHelper;
 
 
 public class Login_Activity extends AppCompatActivity implements View.OnClickListener{
 
+
+
+
+
 //Todo: Muss noch alles überarbeitet werden sobald die API dazu fertig ist
 
     public static String username;
-    //String vorname;
-    //String nachname;
-    String password;
-    String passwort;
-    //String passwortdb;
-    //Integer guthaben;
-    //Integer code;
-    String passworttest = "hans";
+    public static String firstname;
+    public static String lastname;
+    public static String password;
+    public static  Integer credit;
+    public static  Integer code;
+   // String passworttest = "hans";
     String type;
+
+
 
 
 
@@ -33,10 +42,15 @@ public class Login_Activity extends AppCompatActivity implements View.OnClickLis
     Button login_confirm_button;
     Button login_registration_button;
 
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.login);
+
+
+        
 
         login_confirm_button = (Button) findViewById(R.id.login_confirm_button);
         login_confirm_button.setOnClickListener(this);
@@ -51,6 +65,7 @@ public class Login_Activity extends AppCompatActivity implements View.OnClickLis
             switch (v.getId()){
                 case R.id.login_confirm_button:
 
+
                     type = "find_login";
                     username = ((EditText) findViewById(R.id.login_username_edittext)).getText().toString();
                     password = ((EditText) findViewById(R.id.login_password_edittext)).getText().toString();
@@ -59,6 +74,10 @@ public class Login_Activity extends AppCompatActivity implements View.OnClickLis
 
                     //Hier muss die Abfrage der Datenbank hin
                     new Connection.ConnectionHelper().execute(type, username, password);
+
+                    Log.d("Message", "Es wurde alles ausgefuehrt");
+
+
                     break;
                 case R.id.login_registration_button:
                         Intent in2 = new Intent(Login_Activity.this, Registration_Activity.class);
@@ -73,12 +92,19 @@ public class Login_Activity extends AppCompatActivity implements View.OnClickLis
 
     }
 
-public void change_activity (String change){
 
-        switch (change){
-            case "approve":
+
+
+public void change_activity(String approval){
+
+        switch (approval){
+            case "allow":
+
+
                 Intent in1 = new Intent(Login_Activity.this, Home_Activity.class);
+               //in1.putExtra("JsonString", result);
                 startActivity(in1);
+
                 break;
 
             case"denid":
@@ -100,23 +126,42 @@ public void change_activity (String change){
 }
 
 
-public static void check_login(String login_data){
+
+
+    public static void parseJson (String result) {
+//Todo versuch
+    if (result != null) {
+        try {
+            JSONArray user = new JSONArray(result);
+            for (int i = 0; i < user.length(); i++) {
+                JSONObject c = user.getJSONObject(i);
+                firstname = c.getString("firstname");
+                lastname = c.getString("lastname");
+                credit = c.getInt("credit");
+                code = c.getInt("code");
+                Log.d("Daten", username);
+                Log.d("Daten", firstname);
+                Log.d("Daten", lastname);
+                Log.d("Daten", String.valueOf(credit));
+                Log.d("Daten", String.valueOf(code));
+                Log.d("Daten", password);
+                String approval = "allow";
+                // Wird gezeigt wie ich die sachen aufrufen kann.
+               Login_Activity logintest = new Login_Activity();
+               logintest.change_activity(approval);
 
 
 
-        //kommt gleich noch was dazu
+
+
+            }
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+    }
+
 
 }
-
-
-   // public void onLogin(View view, String username, String password){
-     //   String type = "find_login";
-       // Connection.ConnectionHelper connectionHelper = new Connection.ConnectionHelper(this);
-       // connectionHelper.execute(type, username, password);
-  // }
-
-
-
 
 }
 
