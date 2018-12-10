@@ -1,6 +1,5 @@
 package com.example.noah.whiskey_app_mark_03;
 
-import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -9,12 +8,13 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.app.AlertDialog;
+import android.widget.Toast;
 
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import Connection.ConnectionHelper;
+import Connection.LoginHelper;
 
 
 public class Login_Activity extends AppCompatActivity implements View.OnClickListener{
@@ -25,13 +25,14 @@ public class Login_Activity extends AppCompatActivity implements View.OnClickLis
 
 //Todo: Muss noch alles überarbeitet werden sobald die API dazu fertig ist
 
-    public static String username;
+    public static String nickname;
     public static String firstname;
     public static String lastname;
     public static String password;
-    public static  Integer credit;
-    public static  Integer code;
-   // String passworttest = "hans";
+    public static Integer credit;
+    public static Integer code;
+   public static AlertDialog alertDialog;
+
     String type;
 
 
@@ -50,7 +51,8 @@ public class Login_Activity extends AppCompatActivity implements View.OnClickLis
         setContentView(R.layout.login);
 
 
-        
+
+
 
         login_confirm_button = (Button) findViewById(R.id.login_confirm_button);
         login_confirm_button.setOnClickListener(this);
@@ -67,15 +69,16 @@ public class Login_Activity extends AppCompatActivity implements View.OnClickLis
 
 
                     type = "find_login";
-                    username = ((EditText) findViewById(R.id.login_username_edittext)).getText().toString();
+                    nickname = ((EditText) findViewById(R.id.login_nickname_edittext)).getText().toString();
                     password = ((EditText) findViewById(R.id.login_password_edittext)).getText().toString();
 
-                  //  onLogin(v, username, password);
+                  //  onLogin(v, nickname, password);
 
                     //Hier muss die Abfrage der Datenbank hin
-                    new Connection.ConnectionHelper().execute(type, username, password);
+                    LoginHelper LoginHepler = new LoginHelper(this);
+                    LoginHepler.execute(type, nickname, password);
 
-                    Log.d("Message", "Es wurde alles ausgefuehrt");
+
 
 
                     break;
@@ -95,6 +98,36 @@ public class Login_Activity extends AppCompatActivity implements View.OnClickLis
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+//Todo Brauche ich später ind anderen datein
+
+
 public void change_activity(String approval){
 
         switch (approval){
@@ -111,7 +144,7 @@ public void change_activity(String approval){
                 //Message erstellen beginn
                 AlertDialog.Builder login_fail = new AlertDialog.Builder(this);
                 login_fail.setTitle("Fehlermeldung");
-                login_fail.setMessage("Bitee Login-Daten überprüfen");
+                login_fail.setMessage("Bitte Login-Daten überprüfen");
                 login_fail.setCancelable(true);
                 //Message erstellen ende
 
@@ -139,7 +172,7 @@ public void change_activity(String approval){
                 lastname = c.getString("lastname");
                 credit = c.getInt("credit");
                 code = c.getInt("code");
-                Log.d("Daten", username);
+                Log.d("Daten", nickname);
                 Log.d("Daten", firstname);
                 Log.d("Daten", lastname);
                 Log.d("Daten", String.valueOf(credit));

@@ -15,7 +15,7 @@
 
     <!--Login-->
     <string name="login_description">Bitte geben sie Ihre Userdaten ein</string>
-    <string name="login_username_description">Username</string>
+    <string name="login_nickname_description">nickname</string>
     <string name="login_password_description">Passwort</string>
     <string name="login_confirm_button">Bestätigen</string>
     <string name="login_registration_button">Registrieren</string>
@@ -23,7 +23,7 @@
 
     <!--Registration-->
     <string name="registration_description">Bitte geben Sie folgende Date zur erfolgreichen Registrierung ein:</string>
-    <string name="registration_username_description">Nickname</string>
+    <string name="registration_nickname_description">Nickname</string>
     <string name="registration_firstname_description">Vorname</string>
     <string name="registration_lastname_description">Nachname</string>
     <string name="registration_birth_description">Geburtsdatum</string>
@@ -32,5 +32,6 @@
     <string name="registration_password_two_description">Passwort bestätigen</string>
     <string name="registration_confirm_button">Bestätigen</string>
     <string name="registration_back_button">Zurúck</string>
+    <string name="registration_code_description">Code</string>
 
 </resources>
