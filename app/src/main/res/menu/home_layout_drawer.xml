@@ -35,4 +35,17 @@
         </menu>
     </item>
 
+    <item android:title="Guide">
+        <menu>
+            <item
+                android:id="@+id/guide_small"
+                android:icon="@drawable/ic_menu_share"
+                android:title="@string/guide_small" />
+            <item
+                android:id="@+id/guide_big"
+                android:icon="@drawable/ic_menu_send"
+                android:title="@string/guide_big" />
+        </menu>
+    </item>
+
 </menu>

@@ -202,7 +202,7 @@ public class LoginHelper extends AsyncTask<String, Void, String> {
 
         switch (result) {
             case "success":
-
+                in1.putExtra("nickname", nickname);
                context.startActivity(in1);
 
                 break;

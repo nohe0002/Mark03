@@ -45,7 +45,7 @@ public class Registration_Activity extends AppCompatActivity implements View.OnC
 
 
     }
-//Todo zur regestierung muss noch eine abfrage ob alle daten eingetragen wurden und ob es die person schon gibt. die prüfung kann ich in der api machen
+//Todo Es wir bereits geprüft ob in jedem feld etwas eingetragen wurde. Allerdings muss noch geprüft werden ob es die richtigen daten sind
     public void onClick(View v) {
         try {
             switch (v.getId()){

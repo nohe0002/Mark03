@@ -6,9 +6,13 @@
     <!--Navigaton Drawer-->
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
-    <string name="nav_header_title">Hier steht der Name des Users</string>
-    <string name="nav_header_subtitle">Hier kann noch was stehen, bin ich mir aber noch unsicher</string>
+    <string name="nav_header_title">Hier steht der Nickname des Users</string>
+    <string name="nav_header_subtitle">Hier kann der Vor und Nachname stehen</string>
     <string name="nav_header_desc">Hier kann ein Bild von einer person rein</string>
+
+    <string name="guide_small">Kleiner Whiskey Guide</string>
+    <string name="guide_big">Großer Whiskey Guide</string>
+
 
     <!--Settings-->
     <string name="action_settings">Settings</string>

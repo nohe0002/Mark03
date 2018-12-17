@@ -3,6 +3,7 @@ package com.example.noah.whiskey_app_mark_03;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
+import android.util.Log;
 import android.view.View;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -12,14 +13,30 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.TextView;
 
 public class Home_Activity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
+
+
+    String nickname;
+    String firstname;
+    String lastname;
+    String email;
+    String credit;
+    String code;
+    String password;
+
+
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.home_layout);
+
+
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
@@ -40,6 +57,24 @@ public class Home_Activity extends AppCompatActivity
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
+
+
+        //Ab hier ist es von mir selbst
+
+
+        if(getIntent().hasExtra("nickname") == true) {
+            nickname = getIntent().getExtras().getString("nickname");
+            Log.d("Daten", nickname);
+
+        //So kann ich TextViews ändern die über Include verknüpft wurden (normalerweise kommt NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view); noch dazu. Ist aber in dem Fall schon vorhanden)
+        View headerView = navigationView.getHeaderView(0);
+        TextView navUsername = (TextView) headerView.findViewById(R.id.nav_header_nickname);
+        navUsername.setText(nickname);
+        }
+
+
+        //Hier denke ich kommt die abfrage des onlinehelper rein
+
     }
 
     @Override
@@ -98,4 +133,6 @@ public class Home_Activity extends AppCompatActivity
         drawer.closeDrawer(GravityCompat.START);
         return true;
     }
+
+
 }

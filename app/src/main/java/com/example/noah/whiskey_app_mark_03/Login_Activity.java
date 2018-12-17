@@ -125,6 +125,12 @@ public class Login_Activity extends AppCompatActivity implements View.OnClickLis
 
 
 
+
+
+
+
+
+
 //Todo Brauche ich später ind anderen datein
 
 
@@ -135,7 +141,8 @@ public void change_activity(String approval){
 
 
                 Intent in1 = new Intent(Login_Activity.this, Home_Activity.class);
-               //in1.putExtra("JsonString", result);
+                Log.d("Daten", "nickname");
+                in1.putExtra("nickname", nickname);
                 startActivity(in1);
 
                 break;
