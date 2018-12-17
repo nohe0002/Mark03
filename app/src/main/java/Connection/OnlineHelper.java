@@ -28,27 +28,18 @@ import com.example.noah.whiskey_app_mark_03.R;
 import static android.support.v4.content.ContextCompat.startActivity;
 
 
-public class LoginHelper extends AsyncTask<String, Void, String> {
+public class OnlineHelper extends AsyncTask<String, Void, String> {
 
-    String ip;
-    String login_url;
-    String registration_url;
-    Context context;
-    AlertDialog alertDialog;
+String ip;
+Context context;
+String get_data_url;
 
 
-
-    String nickname;
-    String firstname;
-    String lastname;
-    String birth;
-    String email;
-    String code;
-    String password;
-    String type;
+String type;
+String nickname;
 
 
-    public LoginHelper(Context ctx) {
+    public OnlineHelper(Context ctx) {
         context = ctx;
     }
 
@@ -57,8 +48,10 @@ public class LoginHelper extends AsyncTask<String, Void, String> {
 
         ip = "http://192.168.2.121";
 
-        login_url = ip + "/mark3/SELECT/user_select.php";
-        registration_url = ip + "/mark3/INSERT/user_insert_test.php";
+        get_data_url = ip + "/mark3/SELECT/get_data.php";
+        //login_url = ip + "/mark3/SELECT/user_select.php";
+        //registration_url = ip + "/mark3/INSERT/user_insert_test.php";
+
 
 
     }
@@ -68,16 +61,15 @@ public class LoginHelper extends AsyncTask<String, Void, String> {
     protected String doInBackground(String... params) {
         type = params[0];
         {
-            if (type.equals("find_login")) {
+            if (type.equals("get_data")) {
                 try {
 
 
                     nickname = params[1];
-                    password = params[2];
                     Log.d("Message", "Abfrage wurde durchgeführt Pizza");
 
 
-                    URL url = new URL(login_url);
+                    URL url = new URL(get_data_url);
                     HttpURLConnection httpURLConnection = (HttpURLConnection) url.openConnection();
                     Log.d("Message", "Abfrage wurde durchgeführt test0");
                     httpURLConnection.setRequestMethod("POST");
@@ -86,10 +78,9 @@ public class LoginHelper extends AsyncTask<String, Void, String> {
                     httpURLConnection.setDoInput(true);
                     Log.d("Message", "Abfrage wurde durchgeführt test35");
                     OutputStream outputStream = httpURLConnection.getOutputStream(); //Todo Ab hier geht es nicht mehr weiter
-                    Log.d("Message", "Abfrage wurde durchgeführt test1");
+                    Log.d("Message", "Abfrage wurde durchgeführt HIER STEHT JETZT WAS ANDERES");
                     BufferedWriter bufferedWriter = new BufferedWriter(new OutputStreamWriter(outputStream, "UTF-8"));
-                    String post_data = URLEncoder.encode("nickname", "UTF-8") + "=" + URLEncoder.encode(nickname, "UTF-8") + "&"
-                            + URLEncoder.encode("password", "UTF-8") + "=" + URLEncoder.encode(password, "UTF-8");
+                    String post_data = URLEncoder.encode("nickname", "UTF-8") + "=" + URLEncoder.encode(nickname, "UTF-8");
                     Log.d("Message", "Abfrage wurde durchgeführt test2");
                     bufferedWriter.write(post_data);
                     bufferedWriter.flush();
@@ -126,17 +117,15 @@ public class LoginHelper extends AsyncTask<String, Void, String> {
             try {
 
                 nickname = params[1];
-                firstname = params[2];
-                lastname = params[3];
-                birth = params[4];
-                email = params[5];
-                code = params[6];
-                password = params[7];
+              //  firstname = params[2];
+               // lastname = params[3];
+              //  birth = params[4];
+
 
                 Log.d("Message", "Abfrage wurde durchgeführt Pizza");
 
 
-                URL url = new URL(registration_url);
+                URL url = new URL(get_data_url);
                 HttpURLConnection httpURLConnection = (HttpURLConnection) url.openConnection();
                 Log.d("Message", "Abfrage wurde durchgeführt test0");
                 httpURLConnection.setRequestMethod("POST");
@@ -145,16 +134,14 @@ public class LoginHelper extends AsyncTask<String, Void, String> {
                 httpURLConnection.setDoInput(true);
                 Log.d("Message", "Abfrage wurde durchgeführt test35");
                 OutputStream outputStream = httpURLConnection.getOutputStream(); //Todo Ab hier geht es nicht mehr weiter
-                Log.d("Message", "Abfrage wurde durchgeführt test1");
+                Log.d("Message", "Abfrage wurde durchgeführt HIER STEHT JETZT WAS ANDERES");
                 BufferedWriter bufferedWriter = new BufferedWriter(new OutputStreamWriter(outputStream, "UTF-8"));
                 String post_data =
                         URLEncoder.encode("nickname", "UTF-8") + "=" + URLEncoder.encode(nickname, "UTF-8") + "&"
-                                + URLEncoder.encode("firstname", "UTF-8") + "=" + URLEncoder.encode(firstname, "UTF-8") + "&"
-                                + URLEncoder.encode("lastname", "UTF-8") + "=" + URLEncoder.encode(lastname, "UTF-8") + "&"
-                                + URLEncoder.encode("birth", "UTF-8") + "=" + URLEncoder.encode(birth, "UTF-8") + "&"
-                                + URLEncoder.encode("email", "UTF-8") + "=" + URLEncoder.encode(email, "UTF-8") + "&"
-                                + URLEncoder.encode("code", "UTF-8") + "=" + URLEncoder.encode(code, "UTF-8") + "&"
-                                + URLEncoder.encode("password", "UTF-8") + "=" + URLEncoder.encode(password, "UTF-8");
+                                + URLEncoder.encode("firstname", "UTF-8") + "=" + URLEncoder.encode(nickname, "UTF-8") + "&"
+                                + URLEncoder.encode("lastname", "UTF-8") + "=" + URLEncoder.encode(nickname, "UTF-8") + "&"
+                                + URLEncoder.encode("birth", "UTF-8") + "=" + URLEncoder.encode(nickname, "UTF-8");
+
 
                 // Log.d("Message", "Abfrage wurde durchgeführt test2");
                 bufferedWriter.write(post_data);
@@ -195,26 +182,35 @@ public class LoginHelper extends AsyncTask<String, Void, String> {
 
     protected void onPostExecute(String result) {
 
-        Intent in1 = new Intent(context, Home_Activity.class);
-        Intent in2 = new Intent(context, Login_Activity.class);
+        Home_Activity parse_Json = new Home_Activity();
+        Home_Activity change_user_data = new Home_Activity();
+        if(result.contains(nickname)) {
+            parse_Json.parseJson(result);
+            change_user_data.change_user_data();
+
+        }
+
+
+       // Intent in1 = new Intent(context, Home_Activity.class);
+       // Intent in2 = new Intent(context, Login_Activity.class);
 
         //     super.onPreExecute();
 
-
         switch (result) {
             case "success":
-                in1.putExtra("nickname", nickname);
-               context.startActivity(in1);
+                parse_Json.parseJson(result);
+
+               // Home_Activity.parseJson(result);
 
                 break;
 
-            case "fail":
+            case "get_data_fail":
 
                 Log.d("Message", "Falsche userdaten");
 
                 AlertDialog.Builder login_fail = new AlertDialog.Builder(context);
                 login_fail.setTitle("Fail");
-                login_fail.setMessage("Bitte Login-Daten überprüfen");
+                login_fail.setMessage("Es ist etwas schief gelaufe mit der Datenbank");
                 login_fail.setCancelable(true);
 
                 AlertDialog login_fail_dialog = login_fail.create();
@@ -232,7 +228,7 @@ public class LoginHelper extends AsyncTask<String, Void, String> {
                 AlertDialog registration_success_dialog = registration_success.create();
                 registration_success_dialog.show();
 
-                context.startActivity(in2);
+               // context.startActivity(in2);
 
                 break;
 
@@ -300,4 +296,5 @@ public class LoginHelper extends AsyncTask<String, Void, String> {
 
         }
     }
+
 }

@@ -15,18 +15,27 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.TextView;
 
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import Connection.OnlineHelper;
+
 public class Home_Activity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
 
     String nickname;
-    String firstname;
-    String lastname;
+    String firstname = "hans";
+    String lastname =  "peter";
     String email;
     String credit;
     String code;
     String password;
+    String birth;
 
+    String type;
 
 
 
@@ -65,15 +74,26 @@ public class Home_Activity extends AppCompatActivity
         if(getIntent().hasExtra("nickname") == true) {
             nickname = getIntent().getExtras().getString("nickname");
             Log.d("Daten", nickname);
+            type = "get_data";
+
+
+            OnlineHelper OnlineHelper = new OnlineHelper(this);
+            OnlineHelper.execute(type, nickname);
 
         //So kann ich TextViews ändern die über Include verknüpft wurden (normalerweise kommt NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view); noch dazu. Ist aber in dem Fall schon vorhanden)
         View headerView = navigationView.getHeaderView(0);
         TextView navUsername = (TextView) headerView.findViewById(R.id.nav_header_nickname);
         navUsername.setText(nickname);
+            //Log.d("Daten2", firstname);
+            //Log.d("Daten2", lastname);
+
+            change_user_data();
+
+
         }
 
-
         //Hier denke ich kommt die abfrage des onlinehelper rein
+     //   change_user_data();
 
     }
 
@@ -134,5 +154,63 @@ public class Home_Activity extends AppCompatActivity
         return true;
     }
 
+
+    public void parseJson (String result) {
+
+        Log.d("Fail3", result);
+
+//Todo versuch
+        if (result != null) {
+            try {
+                JSONArray user = new JSONArray(result);
+                Log.d("Fail4", "fail4");
+                for (int i = 0; i < user.length(); i++) {
+                    JSONObject c = user.getJSONObject(i);
+                    nickname = c.getString("nickname");
+                    firstname = c.getString("firstname");
+                    lastname = c.getString("lastname");
+                    birth = c.getString("birth");
+                    email = c.getString("email");
+                    credit = String.valueOf(c.getString("credit"));
+                    code = String.valueOf(c.getInt("code"));
+                    password = c.getString("password");
+                    Log.d("Daten", nickname);
+                    Log.d("Daten", firstname);
+                    Log.d("Daten", lastname);
+                    Log.d("Daten", birth);
+                    Log.d("Daten", email);
+                    Log.d("Daten", credit);
+                    Log.d("Daten", code);
+                    Log.d("Daten", password);
+
+
+                       // change_user_data();
+
+                  //  NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
+                   // View headerView = navigationView.getHeaderView(0);
+                   // TextView user_firstname_lastname = (TextView) headerView.findViewById(R.id.nav_header_subtitle);
+                   // user_firstname_lastname.setText(firstname + " " + lastname);
+
+                    // Wird gezeigt wie ich die sachen aufrufen kann.
+
+                }
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+        }
+
+
+       }
+
+    public void change_user_data(){
+        Log.d("Daten2", firstname);
+        Log.d("Daten2", lastname);
+
+        NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
+        View headerView = navigationView.getHeaderView(0);
+        TextView user_firstname_lastname = (TextView) headerView.findViewById(R.id.nav_header_subtitle);
+        user_firstname_lastname.setText(firstname + " " + lastname);
+
+    }
 
 }
