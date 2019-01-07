@@ -1,6 +1,8 @@
 package com.example.noah.whiskey_app_mark_03;
 
 import android.app.AlertDialog;
+import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -147,7 +149,7 @@ public class Home_Activity extends AppCompatActivity
 
         } else if (id == R.id.nav_send) {
 
-        }else if (id == R.id.nav_credit) {
+        } else if (id == R.id.nav_credit) {
 
 
             AlertDialog.Builder select_credit = new AlertDialog.Builder(this);
@@ -158,6 +160,25 @@ public class Home_Activity extends AppCompatActivity
 
             AlertDialog select_credit_dialog = select_credit.create();
             select_credit_dialog.show();
+
+        }else if (id == R.id.nav_logout) {
+
+            AlertDialog.Builder ask_logout = new AlertDialog.Builder(this);
+            ask_logout.setTitle("Abmelden");
+            ask_logout.setMessage("Wollen Sie sich wirklich abmelden?");
+            ask_logout.setCancelable(false);
+            ask_logout.setPositiveButton("Bestätigen", new DialogInterface.OnClickListener() {
+                public void onClick(DialogInterface dialog, int id) {
+
+                    Intent in1 = new Intent(Home_Activity.this, Login_Activity.class);
+                    startActivity(in1);
+                    }
+                });
+            ask_logout.setNegativeButton("Cancel", null);
+
+            AlertDialog ask_logout_dialog = ask_logout.create();
+            ask_logout_dialog.show();
+
 
         }
 
