@@ -10,8 +10,21 @@
     <string name="nav_header_subtitle">Hier kann der Vor und Nachname stehen</string>
     <string name="nav_header_desc">Hier kann ein Bild von einer person rein</string>
 
-    <string name="guide_small">Kleiner Whiskey Guide</string>
-    <string name="guide_big">Großer Whiskey Guide</string>
+
+    <string name="nav_home">Home</string>
+    <string name="nav_credit">Guthaben</string>
+    <string name="nav_favorites">Favoriten</string>
+    <string name="nav_order">Bestellungen</string>
+
+    <string name="nav_header_guide">Guide</string>
+
+    <string name="nav_guide_small">Kleiner Whiskey Guide</string>
+    <string name="nav_guide_big">Großer Whiskey Guide</string>
+    <string name="nav_guide_search">Whiskey suche</string>
+
+    <string name="nav_header_private">Private</string>
+    <string name="nav_settings">Einstellungen</string>
+    <string name="nav_logout">Abmelden</string>
 
 
     <!--Settings-->
@@ -19,7 +32,7 @@
 
     <!--Login-->
     <string name="login_description">Bitte geben sie Ihre Userdaten ein</string>
-    <string name="login_nickname_description">nickname</string>
+    <string name="login_nickname_description">Nickname</string>
     <string name="login_password_description">Passwort</string>
     <string name="login_confirm_button">Bestätigen</string>
     <string name="login_registration_button">Registrieren</string>

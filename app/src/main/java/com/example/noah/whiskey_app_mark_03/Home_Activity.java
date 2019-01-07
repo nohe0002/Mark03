@@ -1,5 +1,6 @@
 package com.example.noah.whiskey_app_mark_03;
 
+import android.app.AlertDialog;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -26,18 +27,20 @@ public class Home_Activity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
 
-    String nickname;
-    String firstname = "hans";
-    String lastname =  "peter";
-    String email;
-    String credit;
-    String code;
-    String password;
-    String birth;
+  static   String nickname;
+  static  String firstname = "hans";
+  static  String lastname =  "peter";
+  static  String email;
+  static  String credit = "5";
+  static  String code;
+  static  String password;
+  static  String birth;
 
     String type;
 
 
+  static NavigationView navigationView1;
+  static View headerView1;
 
 
     @Override
@@ -84,11 +87,8 @@ public class Home_Activity extends AppCompatActivity
         View headerView = navigationView.getHeaderView(0);
         TextView navUsername = (TextView) headerView.findViewById(R.id.nav_header_nickname);
         navUsername.setText(nickname);
-            //Log.d("Daten2", firstname);
-            //Log.d("Daten2", lastname);
-
-            change_user_data();
-
+            navigationView1 = (NavigationView) findViewById(R.id.nav_view);
+            headerView1 = navigationView1.getHeaderView(0);
 
         }
 
@@ -147,6 +147,18 @@ public class Home_Activity extends AppCompatActivity
 
         } else if (id == R.id.nav_send) {
 
+        }else if (id == R.id.nav_credit) {
+
+
+            AlertDialog.Builder select_credit = new AlertDialog.Builder(this);
+            select_credit.setTitle("Guthaben");
+            select_credit.setMessage(credit + "€");
+            select_credit.setCancelable(true);
+            select_credit.setPositiveButton("OK", null);
+
+            AlertDialog select_credit_dialog = select_credit.create();
+            select_credit_dialog.show();
+
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
@@ -184,12 +196,9 @@ public class Home_Activity extends AppCompatActivity
                     Log.d("Daten", password);
 
 
-                       // change_user_data();
+                       change_user_data();
 
-                  //  NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
-                   // View headerView = navigationView.getHeaderView(0);
-                   // TextView user_firstname_lastname = (TextView) headerView.findViewById(R.id.nav_header_subtitle);
-                   // user_firstname_lastname.setText(firstname + " " + lastname);
+
 
                     // Wird gezeigt wie ich die sachen aufrufen kann.
 
@@ -202,14 +211,16 @@ public class Home_Activity extends AppCompatActivity
 
        }
 
+
+       //Ist nur ein test
     public void change_user_data(){
         Log.d("Daten2", firstname);
         Log.d("Daten2", lastname);
 
-        NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
-        View headerView = navigationView.getHeaderView(0);
-        TextView user_firstname_lastname = (TextView) headerView.findViewById(R.id.nav_header_subtitle);
+
+        TextView user_firstname_lastname = (TextView) headerView1.findViewById(R.id.nav_header_subtitle);
         user_firstname_lastname.setText(firstname + " " + lastname);
+
 
     }
 

@@ -5,6 +5,88 @@
 
     <group android:checkableBehavior="single">
         <item
+            android:id="@+id/nav_home"
+            android:icon="@drawable/ic_home_black"
+            android:title="@string/nav_home" />
+        <item
+            android:id="@+id/nav_credit"
+            android:icon="@drawable/ic_credit_card_black"
+            android:title="@string/nav_credit" />
+        <item
+            android:id="@+id/nav_favorites"
+            android:icon="@drawable/ic_favorite_black"
+            android:title="@string/nav_favorites" />
+        <item
+            android:id="@+id/nav_order"
+            android:icon="@drawable/ic_shopping_cart_black"
+            android:title="@string/nav_order" />
+
+    </group>
+
+
+
+    <item android:title="@string/nav_header_guide">
+        <menu>
+            <group android:checkableBehavior="single">
+            <item
+                android:id="@+id/nav_guide_small"
+                android:icon="@drawable/ic_navigation_black_klein_test"
+                android:title="@string/nav_guide_small" />
+            <item
+                android:id="@+id/nav_guide_big"
+                android:icon="@drawable/ic_navigation_black"
+                android:title="@string/nav_guide_big" />
+            <item
+                android:id="@+id/nav_guide_search"
+                android:icon="@drawable/ic_search_black"
+                android:title="@string/nav_guide_search" />
+            </group>
+        </menu>
+    </item>
+
+
+
+    <item android:title="@string/nav_header_private">
+        <menu>
+            <group android:checkableBehavior="single">
+                <item
+                    android:id="@+id/nav_settings"
+                    android:icon="@drawable/ic_settings_black"
+                    android:title="@string/nav_settings" />
+                <item
+                    android:id="@+id/nav_logout"
+                    android:icon="@drawable/ic_exit_to_app_black"
+                    android:title="@string/nav_logout" />
+            </group>
+        </menu>
+    </item>
+
+
+
+
+
+
+    <item android:title="Commuincation">
+        <menu>
+            <group android:checkableBehavior="single">
+                <item
+                    android:id="@+id/nav_share"
+                    android:icon="@drawable/ic_menu_share"
+                    android:title="Share" />
+                <item
+                    android:id="@+id/nav_send"
+                    android:icon="@drawable/ic_menu_send"
+                    android:title="Send" />
+            </group>
+        </menu>
+
+
+    </item>
+
+
+
+    <group android:checkableBehavior="single">
+        <item
             android:id="@+id/nav_camera"
             android:icon="@drawable/ic_menu_camera"
             android:title="Import" />
@@ -20,32 +102,15 @@
             android:id="@+id/nav_manage"
             android:icon="@drawable/ic_menu_manage"
             android:title="Tools" />
+
+
     </group>
 
-    <item android:title="Communicate">
-        <menu>
-            <item
-                android:id="@+id/nav_share"
-                android:icon="@drawable/ic_menu_share"
-                android:title="Share" />
-            <item
-                android:id="@+id/nav_send"
-                android:icon="@drawable/ic_menu_send"
-                android:title="Send" />
-        </menu>
-    </item>
 
-    <item android:title="Guide">
-        <menu>
-            <item
-                android:id="@+id/guide_small"
-                android:icon="@drawable/ic_menu_share"
-                android:title="@string/guide_small" />
-            <item
-                android:id="@+id/guide_big"
-                android:icon="@drawable/ic_menu_send"
-                android:title="@string/guide_big" />
-        </menu>
-    </item>
 
 </menu>
+
+
+<!-- home, guthaben, profile bearbeiten, abmelden, bestelleungen, favoriten, whiskey suche, Einstellungen -->
+
+<!-- home, guthaben, favorite, bestellungen,   Guide kleiner grosser  whiskeysuche              private einstellungen, abmelden -->

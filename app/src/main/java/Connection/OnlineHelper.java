@@ -186,7 +186,7 @@ String nickname;
         Home_Activity change_user_data = new Home_Activity();
         if(result.contains(nickname)) {
             parse_Json.parseJson(result);
-            change_user_data.change_user_data();
+           // change_user_data.change_user_data();
 
         }
 

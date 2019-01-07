@@ -216,6 +216,7 @@ public class LoginHelper extends AsyncTask<String, Void, String> {
                 login_fail.setTitle("Fail");
                 login_fail.setMessage("Bitte Login-Daten überprüfen");
                 login_fail.setCancelable(true);
+                login_fail.setPositiveButton("OK", null);
 
                 AlertDialog login_fail_dialog = login_fail.create();
                 login_fail_dialog.show();
@@ -228,6 +229,7 @@ public class LoginHelper extends AsyncTask<String, Void, String> {
                 registration_success.setTitle("Glückwunsch");
                 registration_success.setMessage("Sie haben sich Erfolgreich registriert. Bitte geben sie ihre Login-Daten ein");
                 registration_success.setCancelable(true);
+                registration_success.setPositiveButton("OK", null);
 
                 AlertDialog registration_success_dialog = registration_success.create();
                 registration_success_dialog.show();
@@ -242,6 +244,7 @@ public class LoginHelper extends AsyncTask<String, Void, String> {
                 registration_user_fail.setTitle("Fehlermeldung");
                 registration_user_fail.setMessage("Es gibt bereits eine Person mit selben Nickname: Bitte einen anderen aussuchen");
                 registration_user_fail.setCancelable(true);
+                registration_user_fail.setPositiveButton("OK", null);
 
                 AlertDialog regitration_user_fail_dialog = registration_user_fail.create();
                 regitration_user_fail_dialog.show();
@@ -254,6 +257,7 @@ public class LoginHelper extends AsyncTask<String, Void, String> {
                 registration_code_fail.setTitle("Fehlermeldung");
                 registration_code_fail.setMessage("Es gibt bereits eine Person mit selben Code: Bitte einen anderen aussuchen");
                 registration_code_fail.setCancelable(true);
+                registration_code_fail.setPositiveButton("OK", null);
 
                 AlertDialog registration_code_fail_dialog = registration_code_fail.create();
                 registration_code_fail_dialog.show();
@@ -266,6 +270,7 @@ public class LoginHelper extends AsyncTask<String, Void, String> {
                 registration_email_fail.setTitle("Fehlermeldung");
                 registration_email_fail.setMessage("Es wurde bereits ein Account mit dieser E-Mailadresse angelegt.");
                 registration_email_fail.setCancelable(true);
+                registration_email_fail.setPositiveButton("OK", null);
 
                 AlertDialog registration_emai_fail_dialog = registration_email_fail.create();
                 registration_emai_fail_dialog.show();
@@ -278,6 +283,7 @@ public class LoginHelper extends AsyncTask<String, Void, String> {
                 registration_connection_fail.setTitle("Fehlermeldung");
                 registration_connection_fail.setMessage("Es gibt unerwartete Probleme mit dem System: Bitte versuchen sie es später erneut");
                 registration_connection_fail.setCancelable(true);
+                registration_connection_fail.setPositiveButton("OK", null);
 
                 AlertDialog registration_connection_fail_dialog = registration_connection_fail.create();
                 registration_connection_fail_dialog.show();
@@ -290,6 +296,7 @@ public class LoginHelper extends AsyncTask<String, Void, String> {
                 registration_default_fail.setTitle("Fehlermeldung");
                 registration_default_fail.setMessage("Bitte fühlen sie alle Felder aus");
                 registration_default_fail.setCancelable(true);
+                registration_default_fail.setPositiveButton("OK", null);
 
                 AlertDialog registration_default_fail_dialog= registration_default_fail.create();
                 registration_default_fail_dialog.show();
