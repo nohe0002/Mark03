@@ -58,7 +58,7 @@ public class LoginHelper extends AsyncTask<String, Void, String> {
         ip = "http://192.168.2.121";
 
         login_url = ip + "/mark3/SELECT/user_select.php";
-        registration_url = ip + "/mark3/INSERT/user_insert_test.php";
+        registration_url = ip + "/mark3/INSERT/user_insert_test1.php";
 
 
     }
@@ -156,7 +156,7 @@ public class LoginHelper extends AsyncTask<String, Void, String> {
                                 + URLEncoder.encode("code", "UTF-8") + "=" + URLEncoder.encode(code, "UTF-8") + "&"
                                 + URLEncoder.encode("password", "UTF-8") + "=" + URLEncoder.encode(password, "UTF-8");
 
-                // Log.d("Message", "Abfrage wurde durchgeführt test2");
+                Log.d("Message", "Abfrage wurde durchgeführt test2");
                 bufferedWriter.write(post_data);
                 bufferedWriter.flush();
                 bufferedWriter.close();
@@ -165,14 +165,14 @@ public class LoginHelper extends AsyncTask<String, Void, String> {
                 BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(inputStream, "iso-8859-1"));
                 String result = "";
                 String line = "";
-                //  Log.d("Message", "Abfrage wurde durchgeführt3");
+                Log.d("Message", "Abfrage wurde durchgeführt3");
                 while ((line = bufferedReader.readLine()) != null) {
                     result += line;
                 }
                 bufferedReader.close();
                 inputStream.close();
                 httpURLConnection.disconnect();
-                //  Log.d("Message", "Abfrage wurde durchgeführt Pasta");
+                Log.d("Message", "Abfrage wurde durchgeführt Pasta");
                 return result;
             } catch (MalformedURLException e) {
                 e.printStackTrace();
@@ -250,7 +250,7 @@ public class LoginHelper extends AsyncTask<String, Void, String> {
                 regitration_user_fail_dialog.show();
 
                 break;
-
+//Brauche ich eigentlich nicht
             case "codefail":
 
                 AlertDialog.Builder registration_code_fail = new AlertDialog.Builder(context);

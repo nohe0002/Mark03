@@ -32,6 +32,7 @@
             android:layout_marginTop="15dp"
             android:inputType="textPersonName"
             android:ems="10"
+            android:hint="@string/registration_nickname_description"
             android:layout_below="@+id/registration_description" />
 
         <TextView
@@ -53,6 +54,7 @@
             android:layout_marginTop="15dp"
             android:inputType="textPersonName"
             android:ems="10"
+            android:hint="@string/registration_firstname_description"
             android:layout_below="@+id/registration_nickname_description" />
 
         <TextView
@@ -74,6 +76,7 @@
             android:layout_marginTop="15dp"
             android:inputType="textPersonName"
             android:ems="10"
+            android:hint="@string/registration_lastname_description"
             android:layout_below="@+id/registration_firstname_description"
             />
 
@@ -96,6 +99,11 @@
             android:layout_marginTop="15dp"
             android:inputType="textPersonName"
             android:ems="10"
+            android:hint="@string/registration_birth_description"
+            android:clickable="false"
+            android:focusable="false"
+            android:focusableInTouchMode="false"
+            android:cursorVisible="false"
             android:layout_below="@+id/registration_lastname_description"
             />
 
@@ -118,6 +126,7 @@
             android:layout_marginTop="15dp"
             android:inputType="textEmailAddress"
             android:ems="10"
+            android:hint="@string/registration_email_description"
             android:layout_below="@+id/registration_birth_description"
             />
 
@@ -140,6 +149,7 @@
             android:layout_marginTop="15dp"
             android:inputType="textEmailAddress"
             android:ems="10"
+            android:hint="@string/registration_code_description"
             android:layout_below="@+id/registration_email_description"
             />
 
@@ -162,6 +172,7 @@
             android:layout_marginTop="15dp"
             android:inputType="textPassword"
             android:ems="10"
+            android:hint="@string/registration_password_one_description"
             android:layout_below="@+id/registration_code_description"
             />
 
@@ -184,6 +195,7 @@
             android:layout_marginTop="15dp"
             android:inputType="textPassword"
             android:ems="10"
+            android:hint="@string/registration_password_two_description"
             android:layout_below="@+id/registration_password_one_description"
             />
 

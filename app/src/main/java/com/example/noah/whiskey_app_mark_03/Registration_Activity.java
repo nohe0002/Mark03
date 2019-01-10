@@ -2,13 +2,17 @@ package com.example.noah.whiskey_app_mark_03;
 
 
 import android.app.AlertDialog;
+import android.app.DatePickerDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.DatePicker;
 import android.widget.EditText;
+
+import java.util.Calendar;
 
 import Connection.LoginHelper;
 
@@ -22,6 +26,12 @@ public class Registration_Activity extends AppCompatActivity implements View.OnC
     public static String code;
     public static String password;
     public static String password_confirm;
+
+    //Test für den Kalender
+
+    Calendar mCurrentDate;
+    EditText mDateEditText;
+
 
 
     String type;
@@ -37,12 +47,40 @@ public class Registration_Activity extends AppCompatActivity implements View.OnC
         super.onCreate(savedInstanceState);
         setContentView(R.layout.registration);
 
+
+        //Ist von Kalender test
+        mDateEditText = (EditText)findViewById(R.id.registration_birth_edittext);
+
         registration_back_button = (Button) findViewById(R.id.registration_back_button);
         registration_back_button.setOnClickListener(this);
 
         registration_confirm_button = (Button) findViewById(R.id.registration_confirm_button);
         registration_confirm_button.setOnClickListener(this);
 
+
+        //Ist vom Kalendertest
+        mDateEditText.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                mCurrentDate = Calendar.getInstance();
+                int year = mCurrentDate.get(Calendar.YEAR);
+                int month = mCurrentDate.get(Calendar.MONTH);
+                final int day = mCurrentDate.get(Calendar.DAY_OF_MONTH);
+
+                DatePickerDialog mDatePicker = new DatePickerDialog(Registration_Activity.this, new DatePickerDialog.OnDateSetListener() {
+                    @Override
+                    public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
+                        month = month +1;
+                        mDateEditText.setText(year + "-" + month + "-" + dayOfMonth);
+                        mCurrentDate.set(year, month, dayOfMonth);
+                    }
+                }, year, month, day);
+                mDatePicker.show();
+
+
+
+            }
+        });
 
     }
 //Todo Es wir bereits geprüft ob in jedem feld etwas eingetragen wurde. Allerdings muss noch geprüft werden ob es die richtigen daten sind

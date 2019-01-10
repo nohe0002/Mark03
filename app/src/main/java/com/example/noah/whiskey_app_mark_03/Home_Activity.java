@@ -205,7 +205,7 @@ public class Home_Activity extends AppCompatActivity
                     birth = c.getString("birth");
                     email = c.getString("email");
                     credit = String.valueOf(c.getString("credit"));
-                    code = String.valueOf(c.getInt("code"));
+                    code = String.valueOf(c.getString("code"));
                     password = c.getString("password");
                     Log.d("Daten", nickname);
                     Log.d("Daten", firstname);

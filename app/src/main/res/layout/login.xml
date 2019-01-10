@@ -40,6 +40,7 @@
         android:layout_marginTop="15dp"
         android:inputType="textPersonName"
         android:ems="10"
+        android:hint="Nickname"
         android:layout_below="@+id/login_nickname_description"/>
 
     <TextView
@@ -62,6 +63,7 @@
         android:layout_marginTop="15dp"
         android:inputType="textPassword"
         android:ems="10"
+        android:hint="Passwort"
         android:layout_below="@+id/login_password_description"/>
 
     <Button
