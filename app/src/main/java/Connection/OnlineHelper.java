@@ -34,6 +34,7 @@ public class OnlineHelper extends AsyncTask<String, Void, String> {
 String ip;
 Context context;
 String get_data_url;
+String suggestion_url;
 
 
 String type;
@@ -50,6 +51,7 @@ String nickname;
         ip = "http://192.168.2.121";
 
         get_data_url = ip + "/mark3/SELECT/get_data.php";
+        suggestion_url = ip + "/mark3/SELECT/suggestion.php";
         //login_url = ip + "/mark3/SELECT/user_select.php";
         //registration_url = ip + "/mark3/INSERT/user_insert_test.php";
 
@@ -61,7 +63,7 @@ String nickname;
     @Override
     protected String doInBackground(String... params) {
         type = params[0];
-        {
+
             if (type.equals("get_data")) {
                 try {
 
@@ -110,7 +112,7 @@ String nickname;
 
             }
 
-        }
+
 
         if (type.equals("find_registration")) {
 
@@ -172,6 +174,63 @@ String nickname;
 
 
         }
+
+
+        if (type.equals("suggestion")) {
+            try {
+
+                //Todo Hier wird die testdatenbank genommen da die richtige noch keine tabellen hat. Dafuer muss ich aber einen anderen usernamen benutzten
+                //nickname = params[1];
+
+                nickname = "manni";
+
+                Log.d("Vorschlag", "Vorschlag wird durchführt");
+
+
+                URL url = new URL(suggestion_url);
+                HttpURLConnection httpURLConnection = (HttpURLConnection) url.openConnection();
+                Log.d("Vorschlag", "Abfrage wurde durchgeführt test0");
+                httpURLConnection.setRequestMethod("POST");
+                Log.d("Vorschlag", "Abfrage wurde durchgeführt test");
+                httpURLConnection.setDoOutput(true);
+                httpURLConnection.setDoInput(true);
+                Log.d("Vorschlag", "Abfrage wurde durchgeführt test35");
+                OutputStream outputStream = httpURLConnection.getOutputStream(); //Todo Ab hier geht es nicht mehr weiter
+                Log.d("Vorschlag", "Abfrage wurde durchgeführt HIER STEHT JETZT WAS ANDERES");
+                BufferedWriter bufferedWriter = new BufferedWriter(new OutputStreamWriter(outputStream, "UTF-8"));
+                String post_data = URLEncoder.encode("nickname", "UTF-8") + "=" + URLEncoder.encode(nickname, "UTF-8");
+                Log.d("Vorschlag", "Abfrage wurde durchgeführt test2");
+                bufferedWriter.write(post_data);
+                bufferedWriter.flush();
+                bufferedWriter.close();
+                outputStream.close();
+                InputStream inputStream = httpURLConnection.getInputStream();
+                BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(inputStream, "iso-8859-1"));
+                String result = "";
+                String line = "";
+                Log.d("Vorschlag", "Abfrage wurde durchgeführt3");
+                while ((line = bufferedReader.readLine()) != null) {
+                    result += line;
+                }
+                bufferedReader.close();
+                inputStream.close();
+                httpURLConnection.disconnect();
+                Log.d("Vorschlag", "Abfrage wurde durchgeführt Pasta");
+                Log.d("parseJsonVorschlag", result);
+
+                return result;
+            } catch (MalformedURLException e) {
+                e.printStackTrace();
+                return "Exception: " + e.getMessage();
+            } catch (IOException e) {
+                e.printStackTrace();
+                return "Exception:" + e.getMessage();
+            }
+
+        }
+
+
+
         return null;
     }
 
@@ -184,12 +243,21 @@ String nickname;
     protected void onPostExecute(String result) {
 
         Home_Activity parse_Json_home = new Home_Activity();
-        Home_Activity change_user_data = new Home_Activity();
+        Suggestion_Activity parse_Json_suggestion = new Suggestion_Activity();
+        //Home_Activity change_user_data = new Home_Activity();
 
         if(result.contains(nickname)) {
             parse_Json_home.parseJson(result);
 
            // change_user_data.change_user_data();
+
+        }
+        if(result.contains("whiskeyid")) {
+
+                Log.d("VorschlagOnlineHepler", "Richtiger case");
+                parse_Json_suggestion.parseJson(result);
+
+
 
         }
 

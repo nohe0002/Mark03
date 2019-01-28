@@ -161,7 +161,7 @@ public class Home_Activity extends AppCompatActivity
             in1.putExtra("firstname", firstname);
             in1.putExtra("lastname", lastname);
 
-s
+
             startActivity(in1);
 
         } else if (id == R.id.nav_credit) {
@@ -232,13 +232,13 @@ s
                     Log.d("Daten", password);
 
 
-                       change_user_data();
+
 
 
 
                     // Wird gezeigt wie ich die sachen aufrufen kann.
 
-                }
+                } change_user_data();
             } catch (JSONException e) {
                 e.printStackTrace();
             }

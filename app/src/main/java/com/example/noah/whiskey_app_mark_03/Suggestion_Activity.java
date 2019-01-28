@@ -16,11 +16,20 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.ListView;
+import android.widget.SimpleAdapter;
 import android.widget.TextView;
 
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
+
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Iterator;
+import java.util.LinkedHashMap;
+import java.util.List;
+import java.util.Map;
 
 import Connection.OnlineHelper;
 
@@ -29,19 +38,31 @@ public class Suggestion_Activity extends AppCompatActivity
 
 
     static   String nickname;
-    static  String firstname = "hans";
-    static  String lastname =  "peter";
+    static  String firstname;
+    static  String lastname;
     static  String email;
     static  String credit;
     static  String code;
     static  String password;
     static  String birth;
 
+    static String whiskeyid;
+    static String whiskeyname;
+    static String kurzbeschreibung;
+
     String type;
 
 
     static NavigationView navigationView1;
     static View headerView1;
+
+    static ListView suggestionlistview;
+    static HashMap<String, String> suggestiondata;
+    static List<HashMap<String, String>> suggestionitem;
+    static SimpleAdapter suggstionadapter;
+    static Iterator suggestionit;
+    static HashMap<String, String> suggestionresultMap;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -70,7 +91,23 @@ public class Suggestion_Activity extends AppCompatActivity
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
+
         //Ab hier ist es von mir selbst
+
+
+        suggestionlistview = (ListView) findViewById(R.id.suggestion_listview);
+        suggestiondata = new LinkedHashMap<>();
+
+        suggestionitem = new ArrayList<>();
+        suggstionadapter = new SimpleAdapter(this, suggestionitem,
+                R.layout.suggestion_list_item,
+                new String[]{"First Line", "Second Line"},
+                new int[]{R.id.suggestion_item, R.id.suggestion_subitem});
+
+
+
+
+
 
 
         if(getIntent().hasExtra("nickname") == true) {
@@ -78,13 +115,13 @@ public class Suggestion_Activity extends AppCompatActivity
             firstname = getIntent().getExtras().getString("firstname");
             lastname = getIntent().getExtras().getString("lastname");
             Log.d("Daten", nickname);
-           // type = "get_data";
+            type = "suggestion";
 
 
 
 
-         //   OnlineHelper OnlineHelper = new OnlineHelper(this);
-          //  OnlineHelper.execute(type, nickname);
+            OnlineHelper OnlineHelper = new OnlineHelper(this);
+            OnlineHelper.execute(type, nickname);
 
             //So kann ich TextViews ändern die über Include verknüpft wurden (normalerweise kommt NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view); noch dazu. Ist aber in dem Fall schon vorhanden)
             View headerView = navigationView.getHeaderView(0);
@@ -96,10 +133,20 @@ public class Suggestion_Activity extends AppCompatActivity
             TextView user_firstname_lastname = (TextView) headerView1.findViewById(R.id.nav_header_subtitle);
             user_firstname_lastname.setText(firstname + " " + lastname);
 
+
+
+
+
+
         }
 
         //Hier denke ich kommt die abfrage des onlinehelper rein
         //   change_user_data();
+
+
+        //Erstellen der Listview
+
+
 
     }
 
@@ -161,6 +208,9 @@ public class Suggestion_Activity extends AppCompatActivity
         } else if (id == R.id.nav_guide_suggestion) {
 
             Intent in1 = new Intent(Suggestion_Activity.this, Suggestion_Activity.class);
+            in1.putExtra("nickname", nickname);
+            in1.putExtra("firstname", firstname);
+            in1.putExtra("lastname", lastname);
             startActivity(in1);
 
         } else if (id == R.id.nav_credit) {
@@ -201,8 +251,79 @@ public class Suggestion_Activity extends AppCompatActivity
         return true;
     }
 
+    public void suggestion(){
+
+
+     //   suggestiondata.put("Diana", "3214 Broadway Avenue");
+     //   suggestiondata.put("Tyga", "343 Rack City Drive");
+     //   suggestiondata.put("Rich Homie Quan", "111 Everything Gold Way");
+     //   suggestiondata.put("Donna", "789 Escort St");
+     //   suggestiondata.put("Bartholomew", "332 Dunkin St");
+     //   suggestiondata.put("Eden", "421 Angelic Blvd");
+
+        suggestionit = suggestiondata.entrySet().iterator();
+        Log.d("Suggestiondata2", String.valueOf(suggestiondata));
+        while (suggestionit.hasNext()){
+
+            suggestionresultMap = new HashMap<>();
+            Map.Entry pair = (Map.Entry)suggestionit.next();
+            suggestionresultMap.put("First Line", pair.getKey().toString());
+            suggestionresultMap.put("Second Line", pair.getValue().toString());
+            suggestionitem.add(suggestionresultMap);
+        }
+
+        suggestionlistview.setAdapter(suggstionadapter);
+
+
+    }
+
+
+
+    public void parseJson (String result) {
+
+        Log.d("parseJsonVorschlag", result);
+
+//Todo versuch
+        if (result != null) {
+            try {
+                JSONArray suggestion = new JSONArray(result);
+                Log.d("parseJsonVorschlag", "fail4");
+                for (int i = 0; i < suggestion.length(); i++) {
+                    JSONObject c = suggestion.getJSONObject(i);
+                    whiskeyid = c.getString("whiskeyid");
+                    whiskeyname = c.getString("name");
+                    kurzbeschreibung = c.getString("kurzbeschreibung");
+
+                   // suggestiondata.put(whiskeyid, whiskeyname);
+                    suggestiondata.put(whiskeyname, kurzbeschreibung);
+
+                    //credit = String.valueOf(c.getString("credit"));
+
+
+                    Log.d("Vorschlagsdaten", whiskeyid);
+                    Log.d("Vorschlagsdaten", whiskeyname);
+                    Log.d("Suggestiondata", String.valueOf(suggestiondata));
+
+
+
+                }//Todo Versuche eine Listview zu bekommen von der Testdatenbank
+                 suggestion();
+
+
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+        }
+
+
+    }
+
+
+
+
 
 
 }
+
 
 

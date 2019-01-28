@@ -67,7 +67,7 @@ public class LoginHelper extends AsyncTask<String, Void, String> {
     @Override
     protected String doInBackground(String... params) {
         type = params[0];
-        {
+
             if (type.equals("find_login")) {
                 try {
 
@@ -118,7 +118,7 @@ public class LoginHelper extends AsyncTask<String, Void, String> {
 
             }
 
-        }
+
 
         if (type.equals("find_registration")) {
 
