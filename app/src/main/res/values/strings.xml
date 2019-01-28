@@ -21,6 +21,7 @@
     <string name="nav_guide_small">Kleiner Whiskey Guide</string>
     <string name="nav_guide_big">Großer Whiskey Guide</string>
     <string name="nav_guide_search">Whiskey suche</string>
+    <string name="nav_guide_suggestion">Empfehlung</string>
 
     <string name="nav_header_private">Private</string>
     <string name="nav_settings">Einstellungen</string>

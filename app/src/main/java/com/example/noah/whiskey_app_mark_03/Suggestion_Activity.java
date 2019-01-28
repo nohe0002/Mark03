@@ -5,19 +5,18 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
-import android.util.Log;
-import android.view.View;
 import android.support.design.widget.NavigationView;
+import android.support.design.widget.Snackbar;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.TextView;
-
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -25,30 +24,29 @@ import org.json.JSONObject;
 
 import Connection.OnlineHelper;
 
-public class Home_Activity extends AppCompatActivity
-        implements NavigationView.OnNavigationItemSelectedListener {
+public class Suggestion_Activity extends AppCompatActivity
+        implements NavigationView.OnNavigationItemSelectedListener  {
 
 
-  static   String nickname;
-  static  String firstname = "hans";
-  static  String lastname =  "peter";
-  static  String email;
-  static  String credit;
-  static  String code;
-  static  String password;
-  static  String birth;
+    static   String nickname;
+    static  String firstname = "hans";
+    static  String lastname =  "peter";
+    static  String email;
+    static  String credit;
+    static  String code;
+    static  String password;
+    static  String birth;
 
     String type;
 
 
-  static NavigationView navigationView1;
-  static View headerView1;
-
+    static NavigationView navigationView1;
+    static View headerView1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.home_layout);
+        setContentView(R.layout.suggestion_layout);
 
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
@@ -63,39 +61,45 @@ public class Home_Activity extends AppCompatActivity
             }
         });
 
+
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
-        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
+        ActionBarDrawerToggle toggle1 = new ActionBarDrawerToggle(
                 this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
-        drawer.addDrawerListener(toggle);
-        toggle.syncState();
+        drawer.addDrawerListener(toggle1);
+        toggle1.syncState();
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
-
-
         //Ab hier ist es von mir selbst
 
 
         if(getIntent().hasExtra("nickname") == true) {
             nickname = getIntent().getExtras().getString("nickname");
+            firstname = getIntent().getExtras().getString("firstname");
+            lastname = getIntent().getExtras().getString("lastname");
             Log.d("Daten", nickname);
-            type = "get_data";
+           // type = "get_data";
 
 
-            OnlineHelper OnlineHelper = new OnlineHelper(this);
-            OnlineHelper.execute(type, nickname);
 
-        //So kann ich TextViews ändern die über Include verknüpft wurden (normalerweise kommt NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view); noch dazu. Ist aber in dem Fall schon vorhanden)
-        View headerView = navigationView.getHeaderView(0);
-        TextView navUsername = (TextView) headerView.findViewById(R.id.nav_header_nickname);
-        navUsername.setText(nickname);
+
+         //   OnlineHelper OnlineHelper = new OnlineHelper(this);
+          //  OnlineHelper.execute(type, nickname);
+
+            //So kann ich TextViews ändern die über Include verknüpft wurden (normalerweise kommt NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view); noch dazu. Ist aber in dem Fall schon vorhanden)
+            View headerView = navigationView.getHeaderView(0);
+            TextView navUsername = (TextView) headerView.findViewById(R.id.nav_header_nickname);
+            navUsername.setText(nickname);
             navigationView1 = (NavigationView) findViewById(R.id.nav_view);
             headerView1 = navigationView1.getHeaderView(0);
+
+            TextView user_firstname_lastname = (TextView) headerView1.findViewById(R.id.nav_header_subtitle);
+            user_firstname_lastname.setText(firstname + " " + lastname);
 
         }
 
         //Hier denke ich kommt die abfrage des onlinehelper rein
-     //   change_user_data();
+        //   change_user_data();
 
     }
 
@@ -150,18 +154,13 @@ public class Home_Activity extends AppCompatActivity
         } else if (id == R.id.nav_send) {
 
         } else if (id == R.id.nav_home) {
-            Intent in1 = new Intent(Home_Activity.this, Home_Activity.class);
+            Intent in1 = new Intent(Suggestion_Activity.this, Home_Activity.class);
             in1.putExtra("nickname", nickname);
             startActivity(in1);
 
         } else if (id == R.id.nav_guide_suggestion) {
 
-            Intent in1 = new Intent(Home_Activity.this, Suggestion_Activity.class);
-            in1.putExtra("nickname", nickname);
-            in1.putExtra("firstname", firstname);
-            in1.putExtra("lastname", lastname);
-
-
+            Intent in1 = new Intent(Suggestion_Activity.this, Suggestion_Activity.class);
             startActivity(in1);
 
         } else if (id == R.id.nav_credit) {
@@ -185,10 +184,10 @@ public class Home_Activity extends AppCompatActivity
             ask_logout.setPositiveButton("Bestätigen", new DialogInterface.OnClickListener() {
                 public void onClick(DialogInterface dialog, int id) {
 
-                    Intent in1 = new Intent(Home_Activity.this, Login_Activity.class);
+                    Intent in1 = new Intent(Suggestion_Activity.this, Login_Activity.class);
                     startActivity(in1);
-                    }
-                });
+                }
+            });
             ask_logout.setNegativeButton("Cancel", null);
 
             AlertDialog ask_logout_dialog = ask_logout.create();
@@ -203,61 +202,7 @@ public class Home_Activity extends AppCompatActivity
     }
 
 
-    public void parseJson (String result) {
-
-        Log.d("Fail3", result);
-
-//Todo versuch
-        if (result != null) {
-            try {
-                JSONArray user = new JSONArray(result);
-                Log.d("Fail4", "fail4");
-                for (int i = 0; i < user.length(); i++) {
-                    JSONObject c = user.getJSONObject(i);
-                    nickname = c.getString("nickname");
-                    firstname = c.getString("firstname");
-                    lastname = c.getString("lastname");
-                    birth = c.getString("birth");
-                    email = c.getString("email");
-                    credit = String.valueOf(c.getString("credit"));
-                    code = String.valueOf(c.getString("code"));
-                    password = c.getString("password");
-                    Log.d("Daten", nickname);
-                    Log.d("Daten", firstname);
-                    Log.d("Daten", lastname);
-                    Log.d("Daten", birth);
-                    Log.d("Daten", email);
-                    Log.d("Daten", credit);
-                    Log.d("Daten", code);
-                    Log.d("Daten", password);
-
-
-                       change_user_data();
-
-
-
-                    // Wird gezeigt wie ich die sachen aufrufen kann.
-
-                }
-            } catch (JSONException e) {
-                e.printStackTrace();
-            }
-        }
-
-
-       }
-
-
-       //Ist nur ein test
-    public void change_user_data(){
-        Log.d("Daten2", firstname);
-        Log.d("Daten2", lastname);
-
-
-        TextView user_firstname_lastname = (TextView) headerView1.findViewById(R.id.nav_header_subtitle);
-        user_firstname_lastname.setText(firstname + " " + lastname);
-
-
-    }
 
 }
+
+

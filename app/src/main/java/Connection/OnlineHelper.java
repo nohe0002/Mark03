@@ -24,6 +24,7 @@ import android.widget.Toast;
 import com.example.noah.whiskey_app_mark_03.Home_Activity;
 import com.example.noah.whiskey_app_mark_03.Login_Activity;
 import com.example.noah.whiskey_app_mark_03.R;
+import com.example.noah.whiskey_app_mark_03.Suggestion_Activity;
 
 import static android.support.v4.content.ContextCompat.startActivity;
 
@@ -182,10 +183,12 @@ String nickname;
 
     protected void onPostExecute(String result) {
 
-        Home_Activity parse_Json = new Home_Activity();
+        Home_Activity parse_Json_home = new Home_Activity();
         Home_Activity change_user_data = new Home_Activity();
+
         if(result.contains(nickname)) {
-            parse_Json.parseJson(result);
+            parse_Json_home.parseJson(result);
+
            // change_user_data.change_user_data();
 
         }
@@ -198,7 +201,7 @@ String nickname;
 
         switch (result) {
             case "success":
-                parse_Json.parseJson(result);
+                parse_Json_home.parseJson(result);
 
                // Home_Activity.parseJson(result);
 

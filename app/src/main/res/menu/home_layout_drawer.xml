@@ -37,9 +37,15 @@
                 android:icon="@drawable/ic_navigation_black"
                 android:title="@string/nav_guide_big" />
             <item
+                android:id="@+id/nav_guide_suggestion"
+                android:icon="@drawable/ic_thumb_up_black"
+                android:title="@string/nav_guide_suggestion" />
+
+            <item
                 android:id="@+id/nav_guide_search"
                 android:icon="@drawable/ic_search_black"
                 android:title="@string/nav_guide_search" />
+
             </group>
         </menu>
     </item>
