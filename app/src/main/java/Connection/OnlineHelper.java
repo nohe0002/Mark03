@@ -25,6 +25,7 @@ import com.example.noah.whiskey_app_mark_03.Home_Activity;
 import com.example.noah.whiskey_app_mark_03.Login_Activity;
 import com.example.noah.whiskey_app_mark_03.R;
 import com.example.noah.whiskey_app_mark_03.Suggestion_Activity;
+import com.example.noah.whiskey_app_mark_03.Whiskey_Selection_Activity;
 
 import static android.support.v4.content.ContextCompat.startActivity;
 
@@ -35,10 +36,12 @@ String ip;
 Context context;
 String get_data_url;
 String suggestion_url;
+String whiskey_select_url;
 
 
 String type;
 String nickname;
+String whiskeyid;
 
 
     public OnlineHelper(Context ctx) {
@@ -52,6 +55,7 @@ String nickname;
 
         get_data_url = ip + "/mark3/SELECT/get_data.php";
         suggestion_url = ip + "/mark3/SELECT/suggestion.php";
+        whiskey_select_url = ip + "/mark3/SELECT/whiskey_select.php";
         //login_url = ip + "/mark3/SELECT/user_select.php";
         //registration_url = ip + "/mark3/INSERT/user_insert_test.php";
 
@@ -114,66 +118,6 @@ String nickname;
 
 
 
-        if (type.equals("find_registration")) {
-
-
-            try {
-
-                nickname = params[1];
-              //  firstname = params[2];
-               // lastname = params[3];
-              //  birth = params[4];
-
-
-                Log.d("Message", "Abfrage wurde durchgeführt Pizza");
-
-
-                URL url = new URL(get_data_url);
-                HttpURLConnection httpURLConnection = (HttpURLConnection) url.openConnection();
-                Log.d("Message", "Abfrage wurde durchgeführt test0");
-                httpURLConnection.setRequestMethod("POST");
-                Log.d("Message", "Abfrage wurde durchgeführt test");
-                httpURLConnection.setDoOutput(true);
-                httpURLConnection.setDoInput(true);
-                Log.d("Message", "Abfrage wurde durchgeführt test35");
-                OutputStream outputStream = httpURLConnection.getOutputStream(); //Todo Ab hier geht es nicht mehr weiter
-                Log.d("Message", "Abfrage wurde durchgeführt HIER STEHT JETZT WAS ANDERES");
-                BufferedWriter bufferedWriter = new BufferedWriter(new OutputStreamWriter(outputStream, "UTF-8"));
-                String post_data =
-                        URLEncoder.encode("nickname", "UTF-8") + "=" + URLEncoder.encode(nickname, "UTF-8") + "&"
-                                + URLEncoder.encode("firstname", "UTF-8") + "=" + URLEncoder.encode(nickname, "UTF-8") + "&"
-                                + URLEncoder.encode("lastname", "UTF-8") + "=" + URLEncoder.encode(nickname, "UTF-8") + "&"
-                                + URLEncoder.encode("birth", "UTF-8") + "=" + URLEncoder.encode(nickname, "UTF-8");
-
-
-                // Log.d("Message", "Abfrage wurde durchgeführt test2");
-                bufferedWriter.write(post_data);
-                bufferedWriter.flush();
-                bufferedWriter.close();
-                outputStream.close();
-                InputStream inputStream = httpURLConnection.getInputStream();
-                BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(inputStream, "iso-8859-1"));
-                String result = "";
-                String line = "";
-                //  Log.d("Message", "Abfrage wurde durchgeführt3");
-                while ((line = bufferedReader.readLine()) != null) {
-                    result += line;
-                }
-                bufferedReader.close();
-                inputStream.close();
-                httpURLConnection.disconnect();
-                //  Log.d("Message", "Abfrage wurde durchgeführt Pasta");
-                return result;
-            } catch (MalformedURLException e) {
-                e.printStackTrace();
-                return "Exception: " + e.getMessage();
-            } catch (IOException e) {
-                e.printStackTrace();
-                return "Exception:" + e.getMessage();
-            }
-
-
-        }
 
 
         if (type.equals("suggestion")) {
@@ -230,6 +174,60 @@ String nickname;
         }
 
 
+        if (type.equals("whiskey_select")) {
+            try {
+
+                //Todo Hier wird die testdatenbank genommen da die richtige noch keine tabellen hat. Dafuer muss ich aber einen anderen usernamen benutzten
+                //nickname = params[1];
+
+                whiskeyid= params[1];
+
+                Log.d("Vorschlag", whiskeyid);
+
+
+                URL url = new URL(whiskey_select_url);
+                HttpURLConnection httpURLConnection = (HttpURLConnection) url.openConnection();
+                Log.d("Vorschlag", "Abfrage wurde durchgeführt test0");
+                httpURLConnection.setRequestMethod("POST");
+                Log.d("Vorschlag", "Abfrage wurde durchgeführt test");
+                httpURLConnection.setDoOutput(true);
+                httpURLConnection.setDoInput(true);
+                Log.d("Vorschlag", "Abfrage wurde durchgeführt test35");
+                OutputStream outputStream = httpURLConnection.getOutputStream(); //Todo Ab hier geht es nicht mehr weiter
+                Log.d("Vorschlag", "Abfrage wurde durchgeführt HIER STEHT JETZT WAS ANDERES");
+                BufferedWriter bufferedWriter = new BufferedWriter(new OutputStreamWriter(outputStream, "UTF-8"));
+                String post_data = URLEncoder.encode("whiskeyid", "UTF-8") + "=" + URLEncoder.encode(String.valueOf(whiskeyid), "UTF-8");
+                Log.d("Vorschlag", "Abfrage wurde durchgeführt test2");
+                bufferedWriter.write(post_data);
+                bufferedWriter.flush();
+                bufferedWriter.close();
+                outputStream.close();
+                InputStream inputStream = httpURLConnection.getInputStream();
+                BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(inputStream, "iso-8859-1"));
+                String result = "";
+                String line = "";
+                Log.d("Vorschlag", "Abfrage wurde durchgeführt3");
+                while ((line = bufferedReader.readLine()) != null) {
+                    result += line;
+                }
+                bufferedReader.close();
+                inputStream.close();
+                httpURLConnection.disconnect();
+                Log.d("Vorschlag", "Abfrage wurde durchgeführt Pasta");
+                Log.d("parseJsonWhiskeyselect", result);
+
+                return result;
+            } catch (MalformedURLException e) {
+                e.printStackTrace();
+                return "Exception: " + e.getMessage();
+            } catch (IOException e) {
+                e.printStackTrace();
+                return "Exception:" + e.getMessage();
+            }
+
+        }
+
+
 
         return null;
     }
@@ -244,8 +242,9 @@ String nickname;
 
         Home_Activity parse_Json_home = new Home_Activity();
         Suggestion_Activity parse_Json_suggestion = new Suggestion_Activity();
+        Whiskey_Selection_Activity parse_Json_whiskey_select =   new Whiskey_Selection_Activity();
         //Home_Activity change_user_data = new Home_Activity();
-
+//Todo Hier muss das mit den nicknamen noch raus. damit der nicht immer probleme bekommt. dort kommt auch ein successwort davor oder dahinter
         if(result.contains(nickname)) {
             parse_Json_home.parseJson(result);
 
@@ -256,6 +255,14 @@ String nickname;
 
                 Log.d("VorschlagOnlineHepler", "Richtiger case");
                 parse_Json_suggestion.parseJson(result);
+
+
+
+        }
+        if(result.contains("whiskeylangbeschreibung_select")) {
+
+            Log.d("Whiskey_SelectOnlineHepler", "Richtiger case");
+            parse_Json_whiskey_select.parseJson(result);
 
 
 

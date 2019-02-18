@@ -16,43 +16,27 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.AdapterView;
-import android.widget.ListView;
-import android.widget.SimpleAdapter;
 import android.widget.TextView;
 
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Iterator;
-import java.util.LinkedHashMap;
-import java.util.List;
-import java.util.Map;
-
 import Connection.OnlineHelper;
 
-public class Suggestion_Activity extends AppCompatActivity
+public class Whiskey_Selection_Activity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
-
-    static   String nickname;
-    static  String firstname;
-    static  String lastname;
+    static  String nickname;
+    static  String firstname = "hans";
+    static  String lastname =  "peter";
     static  String email;
     static  String credit;
     static  String code;
     static  String password;
     static  String birth;
-
-    static String whiskeyid;
-    static String whiskeyname;
-    static String kurzbeschreibung;
-   // static String[] whiskeyidmap =  new String[10];
-
-  static  ArrayList<String> whiskeyidmap = new ArrayList<String>();
+    static  String whiskeyid;
+    static  String whiskey_lang_beschreibung;
 
     String type;
 
@@ -60,18 +44,11 @@ public class Suggestion_Activity extends AppCompatActivity
     static NavigationView navigationView1;
     static View headerView1;
 
-    static ListView suggestionlistview;
-    static HashMap<String, String> suggestiondata;
-    static List<HashMap<String, String>> suggestionitem;
-    static SimpleAdapter suggstionadapter;
-    static Iterator suggestionit;
-    static HashMap<String, String> suggestionresultMap;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.suggestion_layout);
+        setContentView(R.layout.whiskey_select_layout);
 
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
@@ -86,48 +63,35 @@ public class Suggestion_Activity extends AppCompatActivity
             }
         });
 
-
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
-        ActionBarDrawerToggle toggle1 = new ActionBarDrawerToggle(
+        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
                 this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
-        drawer.addDrawerListener(toggle1);
-        toggle1.syncState();
+        drawer.addDrawerListener(toggle);
+        toggle.syncState();
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
 
+
+
+
         //Ab hier ist es von mir selbst
 
 
-        suggestionlistview = (ListView) findViewById(R.id.suggestion_listview);
-        suggestionlistview.setOnItemClickListener( listClick );
-
-        suggestiondata = new LinkedHashMap<>();
-
-        suggestionitem = new ArrayList<>();
-        suggstionadapter = new SimpleAdapter(this, suggestionitem,
-                R.layout.suggestion_list_item,
-                new String[]{"First Line", "Second Line"},
-                new int[]{R.id.suggestion_item, R.id.suggestion_subitem});
-
-
-
-
-
-
-
         if(getIntent().hasExtra("nickname") == true) {
+            whiskeyid = getIntent().getExtras().getString("whiskeyid");
             nickname = getIntent().getExtras().getString("nickname");
             firstname = getIntent().getExtras().getString("firstname");
             lastname = getIntent().getExtras().getString("lastname");
-            Log.d("Daten", nickname);
-            type = "suggestion";
+            Log.d("Data", nickname);
+            Log.d("Data", String.valueOf(whiskeyid));
+            Log.d("Data", firstname);
+            Log.d("Data", lastname);
+            type = "whiskey_select";
 
 
-
-
-            OnlineHelper OnlineHelper = new OnlineHelper(this);
-            OnlineHelper.execute(type, nickname);
+             OnlineHelper OnlineHelper = new OnlineHelper(this);
+             OnlineHelper.execute(type, whiskeyid);
 
             //So kann ich TextViews ändern die über Include verknüpft wurden (normalerweise kommt NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view); noch dazu. Ist aber in dem Fall schon vorhanden)
             View headerView = navigationView.getHeaderView(0);
@@ -136,43 +100,12 @@ public class Suggestion_Activity extends AppCompatActivity
             navigationView1 = (NavigationView) findViewById(R.id.nav_view);
             headerView1 = navigationView1.getHeaderView(0);
 
-            TextView user_firstname_lastname = (TextView) headerView1.findViewById(R.id.nav_header_subtitle);
-            user_firstname_lastname.setText(firstname + " " + lastname);
-
-
-
-
-
-
         }
 
         //Hier denke ich kommt die abfrage des onlinehelper rein
-        //   change_user_data();
-
-
-        //Erstellen der Listview
-
-
+        change_user_data();
 
     }
-
-    private AdapterView.OnItemClickListener listClick = new AdapterView.OnItemClickListener () {
-        public void onItemClick(AdapterView parent, View v, int position, long id) {
-
-
-          // String itemValue = (String) String.valueOf(suggestionlistview.getItemIdAtPosition( position ));
-          // Log.d("ItemValue", itemValue);
-           Log.d("WhiskeyidMap", String.valueOf(position));
-           Log.d("WhiskeyidMap", whiskeyidmap.get(position));
-            Intent in2 = new Intent(Suggestion_Activity.this, Whiskey_Selection_Activity.class);
-            in2.putExtra("whiskeyid", whiskeyidmap.get(position));
-            in2.putExtra("nickname", nickname);
-            in2.putExtra("firstname", firstname);
-            in2.putExtra("lastname", lastname);
-            startActivity(in2);
-        }
-    };
-
 
     @Override
     public void onBackPressed() {
@@ -225,16 +158,18 @@ public class Suggestion_Activity extends AppCompatActivity
         } else if (id == R.id.nav_send) {
 
         } else if (id == R.id.nav_home) {
-            Intent in1 = new Intent(Suggestion_Activity.this, Home_Activity.class);
+            Intent in1 = new Intent(Whiskey_Selection_Activity.this, Home_Activity.class);
             in1.putExtra("nickname", nickname);
             startActivity(in1);
 
         } else if (id == R.id.nav_guide_suggestion) {
 
-            Intent in1 = new Intent(Suggestion_Activity.this, Suggestion_Activity.class);
+            Intent in1 = new Intent(Whiskey_Selection_Activity.this, Suggestion_Activity.class);
             in1.putExtra("nickname", nickname);
             in1.putExtra("firstname", firstname);
             in1.putExtra("lastname", lastname);
+
+
             startActivity(in1);
 
         } else if (id == R.id.nav_credit) {
@@ -258,7 +193,7 @@ public class Suggestion_Activity extends AppCompatActivity
             ask_logout.setPositiveButton("Bestätigen", new DialogInterface.OnClickListener() {
                 public void onClick(DialogInterface dialog, int id) {
 
-                    Intent in1 = new Intent(Suggestion_Activity.this, Login_Activity.class);
+                    Intent in1 = new Intent(Whiskey_Selection_Activity.this, Login_Activity.class);
                     startActivity(in1);
                 }
             });
@@ -275,68 +210,26 @@ public class Suggestion_Activity extends AppCompatActivity
         return true;
     }
 
-    public void suggestion(){
-
-
-     //   suggestiondata.put("Diana", "3214 Broadway Avenue");
-     //   suggestiondata.put("Tyga", "343 Rack City Drive");
-     //   suggestiondata.put("Rich Homie Quan", "111 Everything Gold Way");
-     //   suggestiondata.put("Donna", "789 Escort St");
-     //   suggestiondata.put("Bartholomew", "332 Dunkin St");
-     //   suggestiondata.put("Eden", "421 Angelic Blvd");
-
-        suggestionit = suggestiondata.entrySet().iterator();
-        Log.d("Suggestiondata2", String.valueOf(suggestiondata));
-        while (suggestionit.hasNext()){
-
-            suggestionresultMap = new HashMap<>();
-            Map.Entry pair = (Map.Entry)suggestionit.next();
-            suggestionresultMap.put("First Line", pair.getKey().toString());
-            suggestionresultMap.put("Second Line", pair.getValue().toString());
-            suggestionitem.add(suggestionresultMap);
-        }
-
-        suggestionlistview.setAdapter(suggstionadapter);
-
-
-
-    }
-
-
 
     public void parseJson (String result) {
 
-        Log.d("parseJsonVorschlag", result);
+        Log.d("Fail3", result);
 
 //Todo versuch
         if (result != null) {
             try {
-                JSONArray suggestion = new JSONArray(result);
-                Log.d("parseJsonVorschlag", "fail4");
-                for (int i = 0; i < suggestion.length(); i++) {
-                    JSONObject c = suggestion.getJSONObject(i);
-                    whiskeyid = c.getString("whiskeyid");
-                    whiskeyname = c.getString("name");
-                    kurzbeschreibung = c.getString("kurzbeschreibung");
+                JSONArray user = new JSONArray(result);
+                Log.d("Fail4", "fail4");
+                for (int i = 0; i < user.length(); i++) {
+                    JSONObject c = user.getJSONObject(i);
+                    whiskey_lang_beschreibung = c.getString("langbeschreibung");
 
-                   // suggestiondata.put(whiskeyid, whiskeyname);
-                    suggestiondata.put(whiskeyname, kurzbeschreibung);
-
-                    //credit = String.valueOf(c.getString("credit"));
-
-                    whiskeyidmap.add(i, whiskeyid);
+                    Log.d("BeschreibungvonWhiskey", whiskey_lang_beschreibung);
 
 
-                    Log.d("Vorschlagsdaten", whiskeyid);
-                    Log.d("Vorschlagsdaten", whiskeyname);
-                    Log.d("Suggestiondata", String.valueOf(suggestiondata));
+                    // Wird gezeigt wie ich die sachen aufrufen kann.
 
-
-
-                }//Todo Versuche eine Listview zu bekommen von der Testdatenbank
-                 suggestion();
-
-
+                } change_whiskey_data();
             } catch (JSONException e) {
                 e.printStackTrace();
             }
@@ -346,8 +239,24 @@ public class Suggestion_Activity extends AppCompatActivity
     }
 
 
+    //Ist nur ein test
+    public void change_user_data(){
+        Log.d("Daten2", firstname);
+        Log.d("Daten2", lastname);
 
 
+        TextView user_firstname_lastname = (TextView) headerView1.findViewById(R.id.nav_header_subtitle);
+        user_firstname_lastname.setText(firstname + " " + lastname);
+
+
+    }
+    public void change_whiskey_data(){
+
+
+       // TextView whiskey_select_lang_beschreibung = (TextView) findViewById(R.id.whiskey_select__lang_beschreibung);
+      //  whiskey_select_lang_beschreibung.setText(whiskey_lang_beschreibung);
+
+    }
 
 
 }

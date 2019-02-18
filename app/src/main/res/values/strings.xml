@@ -52,4 +52,7 @@
     <string name="registration_back_button">Zurúck</string>
     <string name="registration_code_description">Code</string>
 
+    <!--Whiskey_Select-->
+    <string name="whiskey_select_lang_beschreibung">Test(Beschreibung von Whiskey). Wenn Sie das sehen, hat etwas nicht funktioniert</string>
+
 </resources>
