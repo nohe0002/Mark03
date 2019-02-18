@@ -55,7 +55,7 @@ public class LoginHelper extends AsyncTask<String, Void, String> {
 
     protected void onPreExecute() {
 
-        ip = "http://192.168.2.121";
+        ip = "http://192.168.2.118";
 
         login_url = ip + "/mark3/SELECT/user_select.php";
         registration_url = ip + "/mark3/INSERT/user_insert.php";
