@@ -51,7 +51,8 @@ String whiskeyid;
 
     protected void onPreExecute() {
 
-        ip = "http://192.168.2.118";
+        //ip = "http://192.168.2.118";
+        ip = "http://139.19.61.24";
 
         get_data_url = ip + "/mark3/SELECT/get_data.php";
         suggestion_url = ip + "/mark3/SELECT/suggestion.php";

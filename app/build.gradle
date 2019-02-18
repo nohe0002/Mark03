@@ -29,5 +29,6 @@ dependencies {
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
 
     //Das ist von dem kalender den ich testen will
-    compile 'com.github.sillebille:dynamic-calendar:1.0.1'
+    //compile 'com.github.sillebille:dynamic-calendar:1.0.1'
+    implementation 'com.github.sillebille:dynamic-calendar:1.0.1'
 }
