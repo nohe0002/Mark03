@@ -1,1 +1,0 @@
-Ich muss ab jetzt alles mit mysqli machen da php7 nur noch damit arbeitet. Die meisten mysqli statmens brauchen 1 oder zwei parameter. Zum Beispiel die $con ist oft gefragt. 

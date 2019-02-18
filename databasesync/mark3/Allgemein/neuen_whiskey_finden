@@ -1,1 +1,0 @@
-versuchen aufgrund der datensätze ein schema zu finden. Wenn gefunden. dann aufgrund des schemas einen neuen vorschlagen und diesen auf die liste setzen welche schon vorgschalgen wurde und welche schon getrunken wurde. beim nächsten durchlauf wird geschaut ob sich ein vorschlag schon auf der liste befindet, wenn ja dann den náchsten vorschlag nehmen, wenn nein diesen vorschlagen

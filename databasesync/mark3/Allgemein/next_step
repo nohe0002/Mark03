@@ -1,8 +1,0 @@
-Die Button in der Registration eine sinnvolle funktion geben. 
-
-Die Api erweitern
-
-die Internetverbindung inklusive asyncon task
-
-ich muss prüfen ob es den nickname bereits in der datenbank gibt
-ich muss beachten das wenn ich einen code eintragen lasse, der als erstes geprüft wird ob dieser bereits vergeben ist
