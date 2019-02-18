@@ -1,0 +1,2 @@
+In der hauptdatei wird eine neues object gebildet mit unterschiedlichen parametern. Diese werden in einer neuen klasse verarbeitet und zu einer url zusammengebaut. Diese wird abgeschickt und die daten in einem jsonarray gepackt.
+

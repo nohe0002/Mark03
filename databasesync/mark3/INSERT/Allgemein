@@ -1,0 +1,8 @@
+Es muss geprüft werden ob ein datensatz mit den selben werten bereits besteht oder nicht. Dabei sind folgende Datensätze zu beachten: Nickname, email und code.
+Die Abfrage ist nicht das schwirige sondern der App zurückzugeben welcher wert schon vorhanden ist.
+
+
+
+Die Idee ist das Passwort noch zu hashen bevor es in die Datenbank kommt. Dazu ist die datei user_select_test.php
+
+Allerdings muss ich erst mal schauen wie das die Passwörter vergleiche

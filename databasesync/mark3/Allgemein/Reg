@@ -1,0 +1,8 @@
+ darf keine nuzternamen zweimal geben
+  4 - geburstag muss in einer bestimmten form gespeichert werden
+  5 - alter muss überprüft ewrden
+  6 - password darf nicht in klartext übermittelt werden
+  7 
+  8 Wenn kein Netz muss es eine Fehlermeldung geben, bzw bei allen möglichen sachen die auftreten können, müssen berücksichtigt werde  9 
+ 10 Es darf bei der email-adresse nicht auf groß und kleinschreibung geachtet wrden
+
