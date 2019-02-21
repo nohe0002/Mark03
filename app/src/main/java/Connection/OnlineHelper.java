@@ -40,8 +40,8 @@ String whiskey_select_url;
 
 
 String type;
-String nickname;
-String whiskeyid;
+static String nickname;
+static String whiskeyid;
 
 
     public OnlineHelper(Context ctx) {
@@ -244,12 +244,13 @@ String whiskeyid;
         Home_Activity parse_Json_home = new Home_Activity();
         Suggestion_Activity parse_Json_suggestion = new Suggestion_Activity();
         Whiskey_Selection_Activity parse_Json_whiskey_select =   new Whiskey_Selection_Activity();
-        //Home_Activity change_user_data = new Home_Activity();
+        Home_Activity change_user_data = new Home_Activity();
 //Todo Hier muss das mit den nicknamen noch raus. damit der nicht immer probleme bekommt. dort kommt auch ein successwort davor oder dahinter
+    // Kommt testhalber mal raus. Falls etwas nicht mehr funktioniert ist es wahrscheinlich dashier
         if(result.contains(nickname)) {
             parse_Json_home.parseJson(result);
 
-           // change_user_data.change_user_data();
+            change_user_data.change_user_data();
 
         }
         if(result.contains("whiskeyid")) {

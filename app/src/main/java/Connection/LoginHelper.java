@@ -57,8 +57,18 @@ public class LoginHelper extends AsyncTask<String, Void, String> {
 
         //ip = "http://192.168.2.118";
         ip = "http://139.19.64.86";
-        login_url = ip + "/mark3/SELECT/user_select.php";
-        registration_url = ip + "/mark3/INSERT/user_insert.php";
+
+        //Test URL für gehaste passwörter in der datenbank
+        login_url = ip + "/mark3/SELECT/old/user_select.php";
+
+        //Ist die richtige url
+        //login_url = ip + "/mark3/SELECT/user_select.php";
+
+        //Test URL für gehashte passwoerter in der datenbank
+        registration_url = ip + "/mark3/INSERT/old/user_insert.php";
+
+        // Ist die Richtige URL
+        //registration_url = ip + "/mark3/INSERT/user_insert.php";
 
 
     }

@@ -21,6 +21,7 @@ import android.widget.TextView;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
+import org.w3c.dom.Text;
 
 import Connection.OnlineHelper;
 
@@ -37,6 +38,8 @@ public class Whiskey_Selection_Activity extends AppCompatActivity
     static  String birth;
     static  String whiskeyid;
     static  String whiskey_lang_beschreibung;
+    static TextView testview;
+    static TextView user_firstname_lastname;
 
     String type;
 
@@ -100,10 +103,19 @@ public class Whiskey_Selection_Activity extends AppCompatActivity
             navigationView1 = (NavigationView) findViewById(R.id.nav_view);
             headerView1 = navigationView1.getHeaderView(0);
 
+            user_firstname_lastname = (TextView) headerView1.findViewById(R.id.nav_header_subtitle);
+            testview = (TextView) findViewById(R.id.whiskey_select_lang_beschreibung);
+
+
+
+
+
+
         }
 
         //Hier denke ich kommt die abfrage des onlinehelper rein
         change_user_data();
+        //change_whiskey_data();
 
     }
 
@@ -245,16 +257,20 @@ public class Whiskey_Selection_Activity extends AppCompatActivity
         Log.d("Daten2", lastname);
 
 
-        TextView user_firstname_lastname = (TextView) headerView1.findViewById(R.id.nav_header_subtitle);
+
         user_firstname_lastname.setText(firstname + " " + lastname);
 
 
     }
     public void change_whiskey_data(){
+        Log.d("Whiskeybeschreibung", whiskey_lang_beschreibung);
 
 
-       // TextView whiskey_select_lang_beschreibung = (TextView) findViewById(R.id.whiskey_select__lang_beschreibung);
-      //  whiskey_select_lang_beschreibung.setText(whiskey_lang_beschreibung);
+        //testview = (TextView) findViewById(R.id.whiskey_select_lang_beschreibung);
+        testview.setText(whiskey_lang_beschreibung);
+
+       // TextView whiskey_select_lang_beschreibung = (TextView) findViewById(R.id.whiskey_select_lang_beschreibung);
+       // whiskey_select_lang_beschreibung.setText(whiskey_lang_beschreibung);
 
     }
 
