@@ -125,9 +125,9 @@ static String whiskeyid;
             try {
 
                 //Todo Hier wird die testdatenbank genommen da die richtige noch keine tabellen hat. Dafuer muss ich aber einen anderen usernamen benutzten
-                //nickname = params[1];
+                nickname = params[1];
 
-                nickname = "manni";
+                //nickname = "peter";
 
                 Log.d("Vorschlag", "Vorschlag wird durchführt");
 
